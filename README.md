@@ -5,6 +5,6 @@ about: https://github.com/mckoch/open-sdaw
 using geolocation classes: https://github.com/mckoch/geodatamapper
 implemented on GeoInformationssytemAußenwerbung: https://www.youtube.com/watch?v=kwtvnnj7YNU 
 
-Please ignore the @copyrights documentation tags. --> GPL 
+Please ignore the @copyrights documentation tags (will be removed with next hopefully update). 
 
-
+This is not a plug-and-play application...
