@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+        <title>Google Maps JavaScript API v3 Example: Event Properties</title>
+        <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
+        <script type="text/javascript">
+            var map;
+            var clickcenter;
+            function initialize() {
+                var latlng = new google.maps.LatLng(51.47,-0.025956);
+                var myOptions = {
+                    zoom: 12,
+                    center: latlng,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                };
+                map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+                google.maps.event.addListener(map, "rightclick",function(event){showContextMenu(event.latLng);});
+                google.maps.event.addListener(map, "click", function(event) {
+                    $('.contextmenu').remove();
+                });
+
+            }
+            function getCanvasXY(currentLatLng){
+                var scale = Math.pow(2, map.getZoom());
+                var nw = new google.maps.LatLng(
+                map.getBounds().getNorthEast().lat(),
+                map.getBounds().getSouthWest().lng()
+            );
+                var worldCoordinateNW = map.getProjection().fromLatLngToPoint(nw);
+                var worldCoordinate = map.getProjection().fromLatLngToPoint(currentLatLng);
+                var currentLatLngOffset = new google.maps.Point(
+                Math.floor((worldCoordinate.x - worldCoordinateNW.x) * scale),
+                Math.floor((worldCoordinate.y - worldCoordinateNW.y) * scale)
+            );
+                return currentLatLngOffset;
+            }
+            function setMenuXY(currentLatLng){
+                var mapWidth = $('#map_canvas').width();
+                var mapHeight = $('#map_canvas').height();
+                var menuWidth = $('.contextmenu').width();
+                var menuHeight = $('.contextmenu').height();
+                var clickedPosition = getCanvasXY(currentLatLng);
+                var x = clickedPosition.x ;
+                var y = clickedPosition.y ;
+
+                if((mapWidth - x ) < menuWidth)
+                    x = x - menuWidth;
+                if((mapHeight - y ) < menuHeight)
+                    y = y - menuHeight;
+
+                $('.contextmenu').css('left',x  );
+                $('.contextmenu').css('top',y );
+            };
+            function showContextMenu(currentLatLng  ) {
+                var contextmenuDir;
+                clickcenter = currentLatLng;
+                $('.contextmenu').remove();
+                contextmenuDir = document.createElement("div");
+                contextmenuDir.className  = 'contextmenu';
+                contextmenuDir.innerHTML = "<a id='menu1' onclick='testfunct(clickcenter)'><div class=context>Umkreissuche hier</div></a>\n\
+                <a id='menu2'><div class=context>Center Marker hier</div></a>\n\
+                <a id='menu2'><div class=context>Places Suche</div></a>";
+                $(map.getDiv()).append(contextmenuDir);
+                setMenuXY(currentLatLng);
+                contextmenuDir.style.visibility = "visible";
+            }
+            function testfunct(clickcenter){
+                    alert (clickcenter);
+                    map.panTo(clickcenter);
+                }
+            
+            $(document).ready(function(){
+                initialize();
+
+            });
+        </script>
+
+        <style type="text/css">
+            #map_canvas{
+                width: 400px;
+                height: 300px;
+            }
+            .contextmenu{
+                visibility:hidden;
+                background:#ffffff;
+                border:1px solid #8888FF;
+                z-index: 10;
+                position: relative;
+                width: 140px;
+            }
+            .contextmenu div{
+                padding-left: 5px
+            }
+            .contextmenu a:link {
+                color: #6699cc;
+            }
+            .contextmenu a:visited {
+                color: #666699;
+            }
+            .contextmenu a:hover {
+                color: #693;
+            }
+            .contextmenu a:active {
+                color: #cc3333;
+                text-decoration: none;
+            }
+        </style>
+    </head>
+    <body onload="initialize()">
+        <div id="map_canvas"></div>
+
+        <div class="formDiv" id="mainmap_context_menu">
+
+        </div>
+
+    </body>
+
+</html>

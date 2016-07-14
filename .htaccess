@@ -1,0 +1,32 @@
+Options +FollowSymlinks
+RewriteEngine on
+
+DirectoryIndex standorte_2.php
+RewriteRule maptype-styled-simple.html gdm_full.php 
+RewriteRule standorte.php standorte_2.php
+RewriteRule freizahlen.php calendartest_1.php
+RewriteRule joean-doe-client.de joean-doe-client_standorte_1.php
+RewriteRule q api_2.php
+RewriteRule qt termine.php
+
+RewriteRule api.php api_2.php
+## RewriteRule termine.php termine.php
+RewriteRule login /_ng/
+RewriteRule logon /_ng/
+RewriteRule tool /_ng/
+
+## RewriteRule beta standorte_2.php
+
+
+AuthUserFile "/srv/www/vhosts/gdm.joean-doe-media.de/httpdocs/sdaw/.htpasswd"
+  AuthName "GDM admin"
+  AuthType Basic
+  
+<FilesMatch "^(application|test|)\.php$">
+  Require valid-user
+</FilesMatch>
+
+<Files .htaccess>
+  order allow,deny
+  deny from all
+</Files>
