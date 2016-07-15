@@ -46,3 +46,5 @@ Nach kurzer Abfrgae von Kontaktinformationen wird eine Kopie des strukturierten 
 Such-Verlauf
 Im Such-Verlauf sind die im Verlauf der Sitzung erfogten Suchen gespeichert. Bei Klick wird die Suche unter Berücksichtigung des Werts der aktuellen Umkreis, Filter- und Paginierungs-Einstellungen in Hauptauswahl und Hauptkarte geladen.
 
+#### !
+Sämtliche Datenformate werden per XML konfiguriert und sind somit serverseitig übergreifend verfügbar, unabhängig vom verwendeten Importformat. Insofern sind die Komponenten unspezifisch gegenüber bestehenden lat/lng Daten. 
