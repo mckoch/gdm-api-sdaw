@@ -5,7 +5,7 @@
  * @author mckoch - 25.04.2011
  * @copyright emcekah@gmail.com 2011
  * @version 1.1.1.1
- * @license No GPL, no CC. Property of author.
+ * @license GPL
  *
  * SDAW Classes:index
  *
