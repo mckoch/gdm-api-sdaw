@@ -35,8 +35,8 @@ define('OUTPUTDIR', '/srv/www/vhosts/gdm.joean-doe-media.de/httpdocs/sdaw/.outfi
  * Logindaten für Datenbank
  */
 $GLOBALS['dbhost'] = 'localhost';
-$GLOBALS['dbuname'] = 'mckoch';
-$GLOBALS['dbpass'] = 'luau+cia';
+$GLOBALS['dbuname'] = '';
+$GLOBALS['dbpass'] = '';
 $GLOBALS['dbname'] = 'SDAWTEST';
 
 /*
